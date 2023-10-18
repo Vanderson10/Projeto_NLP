@@ -16,6 +16,7 @@ Antes de executar o projeto, você precisará instalar as dependências. Recomen
    ```
 
 2. Instale as dependências do projeto a partir do arquivo requirements.txt:
+
    ```bash
    pip install -r requirements.txt
    ```
