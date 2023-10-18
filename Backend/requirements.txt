@@ -1,0 +1,4 @@
+Flask==3.0.0
+pandas==2.1.1
+openai==0.28.1
+numpy== 1.26.1
