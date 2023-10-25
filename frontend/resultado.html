@@ -9,18 +9,14 @@
     <div id="result"></div>
 
     <script>
-      // Verifica se há um parâmetro 'result' na URL
       const params = new URLSearchParams(window.location.search);
       const result = params.get("result");
 
       if (result) {
-        // Converte o JSON recebido de volta em um objeto JavaScript
         const resultData = JSON.parse(decodeURIComponent(result));
 
-        // Exibe o resultado na página
         document.getElementById("result").innerText = resultData.correcao;
       } else {
-        // Caso não haja resultado, exiba uma mensagem adequada
         document.getElementById("result").innerText =
           "Nenhum resultado disponível.";
       }
