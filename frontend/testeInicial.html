@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Digite sua Redação</title>
+    <style>
+      #loading {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Envio de Redação</h1>
+    <form id="redacaoForm">
+      <label for="redacao">Redação:</label>
+      <textarea id="redacao" name="redacao" rows="30" cols="120"></textarea
+      ><br /><br />
+      <input type="button" value="Enviar" onclick="enviarRedacao()" />
+    </form>
+    <div id="loading">Analisando Redação, aguarde...</div>
+
+    <script>
+      function enviarRedacao() {
+        document.getElementById("loading").style.display = "block";
+
+        let redacaoTexto = document.getElementById("redacao").value;
+
+        let redacaoJSON = { redacao: redacaoTexto };
+
+        fetch("http://127.0.0.1:5000/corrigir_redacao", {
+          method: "POST",
+          body: JSON.stringify(redacaoJSON),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            window.location.href =
+              "resultado.html?result=" +
+              encodeURIComponent(JSON.stringify(data));
+          })
+          .catch((error) => {
+            console.error("Erro ao enviar a redação:", error);
+          })
+          .finally(() => {
+            document.getElementById("loading").style.display = "none";
+          });
+      }
+    </script>
+  </body>
+</html>

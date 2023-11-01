@@ -145,12 +145,6 @@ Quanto à introdução: procure estabelecer uma problemática que possa ser trab
 Quanto ao desenvolvimento: o primeiro parágrafo já se inicia encaminhando para uma proposta de intervenção, o que é mais comum na conclusão do texto – “teremos que mudar a nossa educação individual e tecnicista...” / “para revertermos esse quadro...”–. Procure, primeiramente, discutir os problemas apresentados na introdução. Você pode iniciar o desenvolvimento retomando o problema da ausência do sentimento de coexistência e o associando à questão educacional. É interessante também acrescentar exemplos, dados ou fatos a fim de comprovar
 o que se afirma sobre a educação. Uma maneira convincente de fazer isso é utilizar expressões como “PROVA CLARA DISSO” / “CONSEQUÊNCIA DIRETA DESSE...”, afinal, elementos coesivos dessa natureza funcionam como operadores argumentativos que contribuem para a argumentação. Assim, teríamos “prova clara dessa pouca capacidade das escolas é”. Além disso, sempre que for acrescentar algum exemplo, fato ou dado à sua argumentação, reflita de que maneira você pode relacionar os novos elementos de forma que eles reforcem ainda mais a ideia que você defende. Para dar continuidade ao desenvolvimento, escreva um novo parágrafo a fim de discutir a laicidade do Estado. Dessa forma, seguindo uma estruturação próxima àquela sugerida para o primeiro parágrafo de desenvolvimento, o texto conseguiria discutir, por completo, a problemática apresentada. Assim, com os necessários ajustes, a proposta de intervenção estaria melhor relacionada às outras partes do texto.
 
-Competência 1: 120 
-Competência 2: 160 
-Competência 3: 160 
-Competência 4: 160 
-Competência 5: 120 
-
 Pontuação Final: 720 
 """
     return exemplo
