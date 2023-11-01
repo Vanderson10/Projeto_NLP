@@ -32,6 +32,7 @@ updateSpinnerWithScore(feedback.notaFinal);
 function enviarRedacao() {
   // Criar div para centralizar o GIF e o texto
   const loadingDiv = document.createElement("div");
+  loadingDiv.id = "loading"; // Adicione um ID para facilitar a manipulação
   loadingDiv.style.textAlign = "center";
   document.body.appendChild(loadingDiv);
 
@@ -46,46 +47,34 @@ function enviarRedacao() {
   corrigindoText.style.fontSize = "18px";
   loadingDiv.appendChild(corrigindoText);
 
-  setTimeout(() => {
-    // Remover o GIF e o texto após 5 segundos
-    loadingDiv.parentNode.removeChild(loadingDiv);
+  // Obtenha o conteúdo da redação do textarea
+  const redacaoTexto = document.getElementById("redacao").value;
 
-    // Simule o envio da redação e recebimento do feedback do backend (substitua por chamadas reais ao backend)
-    const feedback = {
-      competencia1: 8.5,
-      competencia2: 7.0,
-      competencia3: 6.5,
-      competencia4: 9.0,
-      competencia5: 7.5,
-      notaFinal: 38.5,
-      errosGramaticais: ["Erro 1", "Erro 2"],
-      comentariosGerais: "Bom trabalho, mas pode melhorar.",
-      orientacoesReescrita: "Revise a estrutura do parágrafo de introdução.",
-      linhaArgumentativa: "A linha argumentativa é clara e bem desenvolvida.",
-      agentesApontados: "Você identificou os agentes históricos corretamente.",
-    };
+  // Crie um objeto com os dados da redação
+  const redacaoJSON = { redacao: redacaoTexto };
 
-    // Atualizar os elementos na aba "Feedback" com os dados do feedback
-    document.getElementById("competencia1").innerText = feedback.competencia1;
-    document.getElementById("competencia2").innerText = feedback.competencia2;
-    document.getElementById("competencia3").innerText = feedback.competencia3;
-    document.getElementById("competencia4").innerText = feedback.competencia4;
-    document.getElementById("competencia5").innerText = feedback.competencia5;
-    document.getElementById("notaFinal").innerText = feedback.notaFinal;
-    document.getElementById("errosGramaticais").innerText =
-      feedback.errosGramaticais.join(", ");
-    document.getElementById("comentariosGerais").innerText =
-      feedback.comentariosGerais;
-    document.getElementById("orientacoesReescrita").innerText =
-      feedback.orientacoesReescrita;
-    document.getElementById("linhaArgumentativa").innerText =
-      feedback.linhaArgumentativa;
-    document.getElementById("agentesApontados").innerText =
-      feedback.agentesApontados;
-
-    // Mudar para a aba de "Feedback" após o envio
-    showTab("feedback");
-  }, 5000); // 5 segundos (5000 milissegundos)
+  // Faça a requisição POST para o servidor
+  fetch("http://127.0.0.1:5000/corrigir_redacao", {
+    method: "POST",
+    body: JSON.stringify(redacaoJSON),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((feedback) => {
+      // Remover o GIF e o texto após a conclusão
+      loadingDiv.parentNode.removeChild(loadingDiv);
+      document.getElementById("feedbackChat").innerText = feedback.correcao;
+    })
+    .catch((error) => {
+      console.error("Erro ao enviar a redação: " + error);
+      // Lide com o erro, se necessário
+    })
+    .finally(() => {
+      loadingDiv.style.display = "none";
+      showTab("feedback");
+    });
 }
 
 // Mostrar a aba "Envios" por padrão
